@@ -61,7 +61,6 @@ if __name__ == '__main__':
     finance_df.show()
 
     finance_df \
-        .repartition(2) \
         .write \
         .partitionBy("id") \
         .mode("overwrite") \

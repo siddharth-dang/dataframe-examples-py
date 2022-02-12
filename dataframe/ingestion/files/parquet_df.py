@@ -47,6 +47,8 @@ if __name__ == '__main__':
         .agg({"Boro": "count"}) \
         .withColumnRenamed("count(Boro)", "OrderFrequency") \
         .show()
+    # .agg(count(col('Boro')).alias('OrderFrequency'))
+
 
     print("OMO's Zip & Borough list,")
 
@@ -67,7 +69,7 @@ if __name__ == '__main__':
         .withColumn("OMODailyFreq", F.count("OMOID").over(window_spec))
 
     print("# of partitions in window'ed OM dataframe = " + str(omo_daily_freq.count()))
-    omo_daily_freq.show(5)
+    omo_daily_freq.show(30)
 
     omo_daily_freq.select("OMOCreateDate", "OMODailyFreq") \
         .distinct() \
